@@ -9,10 +9,10 @@ export class ApiService {
 
   private url = 'http://localhost:8000/api';
 
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-  getPatients():Observable<any> {
+ 
+  getPatients(): Observable<any> {
     return this.http.get(`${this.url}/patients`);
   }
 
@@ -31,6 +31,7 @@ export class ApiService {
   deletePatient(id: number): Observable<any> {
     return this.http.delete<any>(`${this.url}/patients/${id}`);
   }
+
 
   getVisits(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/visits`);

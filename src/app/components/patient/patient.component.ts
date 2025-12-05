@@ -26,6 +26,8 @@ export class PatientComponent implements OnInit {
   loadPatients() {
     this.api.getPatients().subscribe({
       next: (res) => {
+        console.log(res);
+        
         this.patients = res;
         console.log("Patients loaded:", res);
       },
@@ -38,14 +40,14 @@ export class PatientComponent implements OnInit {
  
   addPatient() {
     this.api.createPatient(this.newPatient).subscribe(() => {
-      this.newPatient = { name: '' }; // mező ürítése
+      this.newPatient = { name: '' }; 
       this.loadPatients();
     });
   }
 
   
   editPatient(patient: any) {
-    this.editPatientData = { ...patient }; // másolatot csinálunk
+    this.editPatientData = { ...patient }; 
   }
 
 
