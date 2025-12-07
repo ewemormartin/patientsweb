@@ -24,18 +24,19 @@ export class PatientComponent implements OnInit {
   }
 
   loadPatients() {
-    this.api.getPatients().subscribe({
-      next: (res) => {
-        console.log(res);
-        
-        this.patients = res;
-        console.log("Patients loaded:", res);
-      },
-      error: (err) => {
-        console.error("Error:", err);
-      }
-    });
-  }
+  this.api.getPatients().subscribe({
+    next: (res: any) => {
+      console.log(res);
+
+      this.patients = res.data;   // ⬅️ EZ A KULCS
+      console.log('Patients loaded:', this.patients);
+    },
+    error: (err) => {
+      console.error('Error:', err);
+    }
+  });
+}
+
 
  
   addPatient() {
