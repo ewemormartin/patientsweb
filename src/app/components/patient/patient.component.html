@@ -1,21 +1,26 @@
 <div class="container mt-4">
   <h2>Páciensek</h2>
 
-
   <div class="card p-3 mb-4">
     <h5>Új páciens hozzáadása</h5>
 
     <input class="form-control mb-2" [(ngModel)]="newPatient.name" placeholder="Név">
+    <input class="form-control mb-2" [(ngModel)]="newPatient.birthDate" placeholder="Születési dátum (YYYY-MM-DD)">
+    <input class="form-control mb-2" [(ngModel)]="newPatient.socialNumber" placeholder="TAJ-szám">
+    <input class="form-control mb-2" [(ngModel)]="newPatient.phone" placeholder="Telefonszám">
 
     <button class="btn btn-primary" (click)="addPatient()">Hozzáadás</button>
   </div>
 
-  
+
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>ID</th>
         <th>Név</th>
+        <th>Születési dátum</th>
+        <th>TAJ-szám</th>
+        <th>Telefon</th>
         <th>Műveletek</th>
       </tr>
     </thead>
@@ -26,13 +31,27 @@
         <td>{{ p.id }}</td>
 
         
-        <td *ngIf="editPatientData?.id !== p.id">
-          {{ p.name }}
+        <td *ngIf="editPatientData?.id !== p.id">{{ p.name }}</td>
+        <td *ngIf="editPatientData?.id === p.id">
+          <input class="form-control" [(ngModel)]="editPatientData.name">
+        </td>
+
+  
+        <td *ngIf="editPatientData?.id !== p.id">{{ p.birthDate }}</td>
+        <td *ngIf="editPatientData?.id === p.id">
+          <input class="form-control" [(ngModel)]="editPatientData.birthDate">
         </td>
 
         
+        <td *ngIf="editPatientData?.id !== p.id">{{ p.socialNumber }}</td>
         <td *ngIf="editPatientData?.id === p.id">
-          <input class="form-control" [(ngModel)]="editPatientData.name">
+          <input class="form-control" [(ngModel)]="editPatientData.socialNumber">
+        </td>
+
+        
+        <td *ngIf="editPatientData?.id !== p.id">{{ p.phone }}</td>
+        <td *ngIf="editPatientData?.id === p.id">
+          <input class="form-control" [(ngModel)]="editPatientData.phone">
         </td>
 
         <td>
