@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-patient',
@@ -26,13 +27,11 @@ export class PatientComponent implements OnInit {
   loadPatients() {
   this.api.getPatients().subscribe({
     next: (res: any) => {
-      console.log(res);
-
-      this.patients = res.data;   // ⬅️ EZ A KULCS
-      console.log('Patients loaded:', this.patients);
+      this.patients = res.data;
+      console.log('Patients:', this.patients);
     },
-    error: (err) => {
-      console.error('Error:', err);
+    error: (err: HttpErrorResponse) => {
+      console.error(err);
     }
   });
 }
